@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        caption="msg://ticketEdit.caption"
+        focusComponent="form"
+        messagesPack="com.company.cubacassalast.web.screens.ticket">
+    <data>
+        <instance id="ticketDc"
+                  class="com.company.cubacassalast.entity.Ticket">
+            <view extends="_local">
+                <property name="departureStation" view="_minimal"/>
+                <property name="arrivalStation" view="_minimal"/>
+                <property name="passenger" view="_minimal"/>
+                <property name="travel" view="_minimal"/>
+            </view>
+            <loader/>
+        </instance>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="editActions" spacing="true">
+        <form id="form" dataContainer="ticketDc">
+            <column width="350px">
+                <maskedField id="numberField" mask="hhhhhhhh-hhhh-hhhh-hhhh-hhhhhhhhhhhh" property="number"/>
+                <pickerField id="departureStationField" property="departureStation">
+                    <actions>
+                        <action id="lookup" type="picker_lookup"/>
+                        <action id="clear" type="picker_clear"/>
+                    </actions>
+                </pickerField>
+                <dateField id="departureDateField" property="departureDate"/>
+                <lookupField id="arrivalStationField" property="arrivalStation">
+                </lookupField>
+                <dateField id="arrivalDateField" property="arrivalDate"/>
+                <pickerField id="passengerField" property="passenger">
+                    <actions>
+                        <action id="lookup" type="picker_lookup"/>
+                        <action id="clear" type="picker_clear"/>
+                    </actions>
+                </pickerField>
+                <lookupField id="transportField" property="transport"/>
+                <textField id="priceField" property="price"/>
+                <pickerField id="travelField" property="travel">
+                    <actions>
+                        <action id="lookup" type="picker_lookup"/>
+                        <action id="clear" type="picker_clear"/>
+                    </actions>
+                </pickerField>
+            </column>
+        </form>
+        <hbox id="editActions" spacing="true">
+            <button id="commitAndCloseBtn" action="windowCommitAndClose"/>
+            <button id="closeBtn" action="windowClose"/>
+        </hbox>
+    </layout>
+</window>

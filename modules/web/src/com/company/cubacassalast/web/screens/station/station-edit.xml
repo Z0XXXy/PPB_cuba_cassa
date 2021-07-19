@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        caption="msg://stationEdit.caption"
+        focusComponent="form"
+        messagesPack="com.company.cubacassalast.web.screens.station">
+    <data>
+        <instance id="stationDc"
+                  class="com.company.cubacassalast.entity.Station">
+            <view extends="_local">
+                <property name="arrivalStations" view="_minimal"/>
+            </view>
+            <loader/>
+            <collection id="arrivalStationsDc" property="arrivalStations"/>
+        </instance>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="editActions" spacing="true">
+        <form id="form" dataContainer="stationDc">
+            <column width="350px">
+                <textField id="nameField" property="name"/>
+            </column>
+        </form>
+        <groupBox id="arrivalStationsBox" caption="msg://com.company.cubacassalast.entity/Station.arrivalStations">
+            <table id="arrivalStationsTable" dataContainer="arrivalStationsDc" width="100%" height="200px">
+                <actions>
+                    <action id="add" type="add"/>
+                    <action id="exclude" type="exclude"/>
+                </actions>
+                <columns>
+                    <column id="name"/>
+                </columns>
+                <buttonsPanel>
+                    <button action="arrivalStationsTable.add"/>
+                    <button action="arrivalStationsTable.exclude"/>
+                </buttonsPanel>
+            </table>
+        </groupBox>
+        <hbox id="editActions" spacing="true">
+            <button id="commitAndCloseBtn" action="windowCommitAndClose"/>
+            <button id="closeBtn" action="windowClose"/>
+        </hbox>
+    </layout>
+</window>
